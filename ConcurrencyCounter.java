@@ -1,7 +1,7 @@
 /** 
  * Concurrency counter written in Java
  * Demonstrates basic Java concurrency, synchronized thread coordination,
- * and data hanbdling.
+ * and data handling.
  */
 
 public class ConcurrencyCounter {
