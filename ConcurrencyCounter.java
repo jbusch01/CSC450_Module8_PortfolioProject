@@ -42,7 +42,7 @@ public class ConcurrencyCounter {
                             Thread.currentThread().interrupt();
                         }
                     }
-                    System.out.println("\n--- Thread 2: Starting Count ---")
+                    System.out.println("\n--- Thread 2: Starting Count ---");
                     for (int i = 20; i >= 0; i--) {
                         System.out.println(i);
                         try {
