@@ -15,7 +15,7 @@ public class ConcurrencyCounter {
             @Override
             public void run() {
                 synchronized (lock) {
-                    System.out.println("-- Thread 1: Starting Count --");
+                    System.out.println("--- Thread 1: Starting Count ---");
                     for (int i = 1; i <= 20; i++) {
                         System.out.println(i);
                         try {
@@ -38,6 +38,15 @@ public class ConcurrencyCounter {
                     while (!countUpFinished) {
                         try {
                             lock.wait(); // Wait for signal from Thread 1
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                        }
+                    }
+                    System.out.println("\n--- Thread 2: Starting Count ---")
+                    for (int i = 20; i >= 0; i--) {
+                        System.out.println(i);
+                        try {
+                            Thread.sleep(100); // Execution delay
                         } catch (InterruptedException e) {
                             Thread.currentThread().interrupt();
                         }
