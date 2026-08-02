@@ -3,7 +3,7 @@ Declare Object lock = New Lock()
 Declare Boolean countUpFinished = False
 
 FUNCTION Main():
-    // Create and confiugure Thread 1
+    // Create and configure Thread 1
     CREATE Thread1 WITH ROUTINE:
         ACQUIRE lock
         PRINT "--- Thread 1 counting up ---"
@@ -28,7 +28,7 @@ FUNCTION Main():
             PRINT i
             SLEEP for 100 milliseconds
         END FOR
-        RELEASE lo9ck
+        RELEASE lock
     END ROUTINE
 
     // Start execution
