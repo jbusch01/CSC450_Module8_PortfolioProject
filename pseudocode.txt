@@ -1,0 +1,37 @@
+// Shared Global Variables
+Declare Object lock = New Lock()
+Decalre Boolean countUpoFinished = False
+
+FUNCTION Main():
+    // Create and confiugure Thread 1
+    CREATE Thread1 WITH ROUTINE:
+        ACQUIRE lock
+        PRINT "--- Thread 1 counting up ---"
+        FOR i FROM 1 TO 20 DO:
+            PRINT i
+            SLEEP for 100 milliseconds
+        END FOR
+
+        SET countUpFinished = True
+        NOTIFY ALL threads waiting on lock
+        RELEASE lock
+    END ROUTINE
+
+    // Create and configure Thread 2
+    CREATE Thread2 WITH ROUTINE:
+        ACQUIRE lock
+        WHILE countUPFinished IS False DO:
+            WAIT on lock // Reliquishes lock and pauses execution
+        END WHILE
+        PRINT "--- Thread 2 counting down ---"
+        FOR i FROM 20- DOWN TO 0 DO:
+            PRINT i
+            SLEEP for 100 milliseconds
+        END FOR
+        RELEASE lo9ck
+    END ROUTINE
+
+    // Start execution
+    START Thread2 // enters wait state inside lock
+    START Thread1 // Begins counting up, then signals Thread2 to start
+END FUNCTION
