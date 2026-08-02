@@ -1,6 +1,6 @@
 // Shared Global Variables
 Declare Object lock = New Lock()
-Decalre Boolean countUpoFinished = False
+Declare Boolean countUpFinished = False
 
 FUNCTION Main():
     // Create and confiugure Thread 1
@@ -24,7 +24,7 @@ FUNCTION Main():
             WAIT on lock // Reliquishes lock and pauses execution
         END WHILE
         PRINT "--- Thread 2 counting down ---"
-        FOR i FROM 20- DOWN TO 0 DO:
+        FOR i FROM 20 DOWN TO 0 DO:
             PRINT i
             SLEEP for 100 milliseconds
         END FOR
